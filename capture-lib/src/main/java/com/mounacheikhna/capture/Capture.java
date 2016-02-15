@@ -7,15 +7,8 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.util.Log;
 import android.view.View;
-
-import org.hamcrest.Matcher;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
