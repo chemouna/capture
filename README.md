@@ -44,9 +44,9 @@ Usage
 Contributing
 ============
 
-* [Check for open issues](https://github.com/chemouna/frame-gradle-plugin/issues) or open
+* [Check for open issues](https://github.com/chemouna/capture/issues) or open
    a fresh issue to start a discussion around a feature idea or a bug.
-* Fork the [repository on Github](https://github.com/chemouna/frame-gradle-plugin)
+* Fork the [repository on Github](https://github.com/chemouna/capture)
    to start making your changes.
 * Send a pull request and bug the maintainer until it gets merged and published.
    :) Make sure to add yourself to ``CONTRIBUTORS.txt``.
