@@ -3,12 +3,11 @@ package com.mounacheikhna.capture
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Exec
 import org.gradle.api.tasks.TaskAction
+import org.gradle.process.ExecResult
 
 /**
  * Created by m.cheikhna on 14/02/2016.
  *
- * This class is temporarely here but it belongs to capture lib -> will be moved to it later
- * temp here just to test them -> TODO: move them to their own module
  */
 public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
 
@@ -20,6 +19,7 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
     private String testClassName
 
     private String testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    private String appPackageName
     private String testPackageName
 
     @TaskAction
@@ -64,7 +64,21 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
     }
 
     void askPermissions() {
-        //TODO: later
+        //check if we are on >= 23 if
+        def checkApi23Args = ["adb", "-s", "$serialNumber", "shell", "getprop", "ro.build.version.sdk"]
+        ExecResult result = getProject().exec {
+            commandLine checkApi23Args
+        }
+        println "result : $result"
+        def apiLevel = result.getExitValue()
+        println "ApiLevel : $apiLevel"
+
+        /*def args = ["adb", "-s", "$serialNumber", "pm", "grant", "$appPackageName"]
+        println " pullScreenshots args : $args"
+        getProject().tasks.create("pullScreenshots", Exec) {
+            //not yet sure in which path does it get put but for now let's use spoon's
+            commandLine args
+        }.execute()*/
     }
 
     void installApks() {
@@ -132,6 +146,11 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
     @Override
     void testInstrumentationRunner(String testInstrumentationRunner) {
         this.testInstrumentationRunner = testInstrumentationRunner
+    }
+
+    @Override
+    void appPackageName(String appPackageName) {
+        this.appPackageName = appPackageName
     }
 
     @Override
