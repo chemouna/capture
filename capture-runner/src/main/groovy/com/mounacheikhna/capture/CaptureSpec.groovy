@@ -13,6 +13,8 @@ interface CaptureSpec {
     void testClassName(String testClassName)
     void serialNumber(String serialNumber)
     void testInstrumentationRunner(String testInstrumentationRunner)
+    void appPackageName(String testPackageName)
     void testPackageName(String testPackageName)
+    void taskPrefix(String taskPrefix)
 
 }

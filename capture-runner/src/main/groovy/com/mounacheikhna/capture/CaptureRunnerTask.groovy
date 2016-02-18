@@ -158,4 +158,9 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
     void testPackageName(String testPackageName) {
         this.testPackageName = testPackageName
     }
+
+    @Override
+    void taskPrefix(String taskPrefix) {
+        this.taskPrefix = taskPrefix
+    }
 }
