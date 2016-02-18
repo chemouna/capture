@@ -2,6 +2,7 @@ Gradle Frame Android screenshots Plugin
 =========================================
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://github.com/chemouna/capture/blob/master/LICENSE.txt)
+[![Release](https://jitpack.io/v/User/Repo.svg)](https://jitpack.io/#User/Repo)
 
 ###### A runner for android tests that pulls screenshots into output folder.
 
@@ -14,19 +15,32 @@ Usage
    <dependency>
      <groupId>com.mounacheikhna.capture</groupId>
      <artifactId>capture-runner</artifactId>
-     <version>0.1</version>
+     <version>$LATEST_VERSION</version>
    </dependency>
    ```
+   
    or Gradle  dependency
    ```gradle
-       repositories {
-           mavenCentral()
+      repositories {
+          mavenCentral()
+      }
+   
+      dependencies{
+          compile 'com.mounacheikhna.screenshots:capture-runner:0.1'
+      }
+   ```
+   
+   or Use a JitPack dependency : 
+   ```gradle 
+     repositories { 
+            jcenter()
+            maven { url "https://jitpack.io" }
        }
-
-       dependencies{
-           compile 'com.mounacheikhna.screenshots:capture-runner:0.1'
+       dependencies {
+           compile "com.mounacheikhna.capture:capture-runner:$LATEST_VERSION"
        }
    ```
+
 
    Use the runner task :
 
