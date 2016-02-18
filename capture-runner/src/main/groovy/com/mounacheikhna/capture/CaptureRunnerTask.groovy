@@ -11,6 +11,7 @@ import org.gradle.process.ExecResult
  */
 public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
 
+    private String taskPrefix = ""
     private String appApkPath
     private String testApkPath
     private String outputPath
@@ -44,7 +45,7 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
     void pullScreenshots() {
         def args = ["adb", "-s", "$serialNumber", "pull", "/sdcard/app_spoon-screenshots", "$outputPath"]
         println " pullScreenshots args : $args"
-        getProject().tasks.create("pullScreenshots", Exec) {
+        getProject().tasks.create("${taskPrefix}PullScreenshots", Exec) {
             //not yet sure in which path does it get put but for now let's use spoon's
             commandLine args
         }.execute()
@@ -58,7 +59,7 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
         }
         args.addAll("-e", "class", "$testClassName", "-w", "$testPackageName/$testInstrumentationRunner")
         println " runScreenshotsTests args : $args"
-        getProject().tasks.create("runScreenshotsTests", Exec) {
+        getProject().tasks.create("${taskPrefix}RunScreenshotsTests", Exec) {
             commandLine args
         }.execute()
     }
@@ -84,13 +85,13 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
     void installApks() {
         println "Installing app APK"
         def appArgs = ["adb", "-s", "$serialNumber", "install", "-r", "$appApkPath"]
-        getProject().tasks.create("installApp", Exec) {
+        getProject().tasks.create("${taskPrefix}InstallApp", Exec) {
             commandLine appArgs
         }.execute()
         //TODO: find a way to get task result and print it
         println 'Installing tests app APK'
         def testAppArgs = ["adb", "-s", "$serialNumber", "install", "-r", "$testApkPath"]
-        getProject().tasks.create("installTestApp", Exec) {
+        getProject().tasks.create("${taskPrefix}InstallTestApp", Exec) {
             commandLine testAppArgs
         }.execute()
     }
