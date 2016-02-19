@@ -4,4 +4,4 @@ Change Log
 Version 0.1.6 *(2016-02-19)*
 ----------------------------
 
-* Fix: Fixes #4
+* Fix: Fixes #4—

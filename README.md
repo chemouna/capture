@@ -26,7 +26,7 @@ Usage
       }
    
       dependencies{
-          compile 'com.mounacheikhna.screenshots:capture-runner:0.1'
+          compile 'com.mounacheikhna.capture:capture-runner:$LATEST_VERSION'
       }
    ```
 
