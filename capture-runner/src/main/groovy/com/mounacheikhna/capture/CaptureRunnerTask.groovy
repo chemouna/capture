@@ -18,8 +18,7 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
     private String serialNumber
     private Map<String, String> instrumentationArgs
     private String testClassName
-
-    private String testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    private static String testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     private String appPackageName
     private String testPackageName
 
