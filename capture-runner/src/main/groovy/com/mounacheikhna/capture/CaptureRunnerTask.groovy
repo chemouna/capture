@@ -26,20 +26,15 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
     @TaskAction
     public void performTask() {
         validateInput()
-//        - (maybe) clean old screenshots
+        //TODO(maybe): clean old screenshots
 
-//        - (later) Validate app apk by checking that all needed permission have been asked for
-//        - install both app apk & test app apk
+        //TODO Validate app apk by checking that all needed permission have been asked for
         installApks()
-//        - grant the needed permissions to the app
         askPermissions()
-//        - run screenshots tests with adb shell instruments
         runScreenshotsTests()
-//        - pull screenshots imgs from device
         pullScreenshots()
-//        - (later maybe) open a summary of the captured screenshots ? (something that resembles spoon instead)
-//
 
+        //TODO open a summary of the captured screenshots ? (something that resembles spoon instead)
     }
 
     void pullScreenshots() {
