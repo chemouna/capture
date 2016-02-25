@@ -24,17 +24,16 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
 
   @TaskAction
   public void performTask() {
-    //validateInput()
+    validateInput()
     //TODO(maybe): clean old screenshots
-    //removeOldScreenshots()
+    removeOldScreenshots()
     //TODO: choose device here and set serialNumber if not specified
 
     //TODO Validate app apk by checking that all needed permission have been asked for
-    //installApks()
+    installApks()
     askPermissions()
-    /*runScreenshotsTests()
-    pullScreenshots()*/
-
+    runScreenshotsTests()
+    pullScreenshots()
     //TODO open a summary of the captured screenshots ? (something that resembles spoon instead)
   }
 
@@ -45,7 +44,7 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
       it.delete()
     }
     //from phone sdcard
-
+    //where does the device put screenshots ?
   }
 
   void pullScreenshots() {
