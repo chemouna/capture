@@ -11,6 +11,7 @@ import org.gradle.process.ExecResult
  */
 public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
 
+  public static final String DEVICE_OUTPUT_PATH = "/sdcard/app_spoon-screenshots"
   private String taskPrefix = ""
   private String appApkPath
   private String testApkPath
@@ -44,11 +45,15 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
       it.delete()
     }
     //from phone sdcard
-    //where does the device put screenshots ?
+    def args = ["adb", "-s", "$serialNumber", "shell", "rm", "-rf", DEVICE_OUTPUT_PATH]
+    getProject().tasks.create("${taskPrefix}DeleteOldScreenshots", Exec) {
+      //not yet sure in which path does it get put but for now let's use spoon's
+      commandLine args
+    }.execute()
   }
 
   void pullScreenshots() {
-    def args = ["adb", "-s", "$serialNumber", "pull", "/sdcard/app_spoon-screenshots", "$outputPath"]
+    def args = ["adb", "-s", "$serialNumber", "pull", DEVICE_OUTPUT_PATH, "$outputPath"]
     println " pullScreenshots args : $args"
     getProject().tasks.create("${taskPrefix}PullScreenshots", Exec) {
       //not yet sure in which path does it get put but for now let's use spoon's
