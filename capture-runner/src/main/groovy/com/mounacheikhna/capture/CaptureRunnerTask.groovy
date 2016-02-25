@@ -2,8 +2,8 @@ package com.mounacheikhna.capture
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Exec
+import org.gradle.api.tasks.StopExecutionException
 import org.gradle.api.tasks.TaskAction
-import org.gradle.process.ExecResult
 
 /**
  * Created by m.cheikhna on 14/02/2016.
@@ -139,7 +139,31 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
         throw new IllegalArgumentException("You must provide an existing directory for the output.")
       }
     }
-    //TODO: check if no serialNumber select the first one by default
+    serialNumber = getAvailableSerialNumber()
+  }
+
+  String getAvailableSerialNumber() {
+    String result = getStringByCommand("adb devices")
+    String[] devicesLines = result.split("\n").tail()
+
+    if(serialNumber?.trim()) {
+      String foundLine = devicesLines.findResult { String line -> line.contains(serialNumber) }
+      if(foundLine.contains("offline")) {
+        throw new StopExecutionException("The device specified to launch tests on is offline.")
+      }
+      return serialNumber
+    }
+    else {
+      devicesLines.each {
+        deviceLine ->
+          String[] parts = deviceLine.split("\\s+")
+          if(!parts[1].equalsIgnoreCase("offline")) { //device connected
+            return parts[0]
+          }
+      }
+      throw new StopExecutionException("No connected device found to run tests on.")
+    }
+
   }
 
   @Override
