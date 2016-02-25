@@ -8,7 +8,6 @@ buildscript {
 }
 
 apply plugin: 'groovy'
-apply plugin: 'idea'
 
 group = 'com.mounacheikhna.capture'
 
