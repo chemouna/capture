@@ -125,18 +125,24 @@ public class CaptureRunnerTask extends DefaultTask implements CaptureSpec {
   }
 
   private void validateInput() {
+    println "Validating input - appApkPath : "+ appApkPath + " - testApkPath : "+ testApkPath + " - outputPath : "
+              + outputPath
     if (!new File(appApkPath).exists()) {
-      throw new IllegalArgumentException("You must provide a valid path for app apk.")
+      throw new IllegalArgumentException("You must provide a valid path for app apk, the provided path " + appApkPath
+              + " not valid")
     }
     if (!new File(testApkPath).exists()) {
-      throw new IllegalArgumentException("You must provide a valid path for test app apk.")
+      throw new IllegalArgumentException("You must provide a valid path for test app apk, the provided test apk path "
+              + testApkPath + " valid")
     }
     if (!outputPath?.trim()) {
-      throw new IllegalArgumentException("You must provide a valid output directory.")
+      throw new IllegalArgumentException("You must provide a valid output directory, the provided path :"+ outputPath
+              + ".")
     } else {
       def outputDir = new File(outputPath)
       if (!outputDir.exists() || !outputDir.isDirectory()) {
-        throw new IllegalArgumentException("You must provide an existing directory for the output.")
+        throw new IllegalArgumentException("You must provide an existing directory for the output, " +
+                + "the provided directory "+ outputPath + " is invalid.")
       }
     }
     serialNumber = getAvailableSerialNumber()
