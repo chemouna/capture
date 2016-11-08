@@ -4,11 +4,13 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 
 /**
  * Created by cheikhnamouna on 2/25/16.
  */
+@Ignore
 class CaptureRunnerTest {
 
   public static final String FIXTURE_WORKING_DIR = new File("src/test/fixtures/app")
