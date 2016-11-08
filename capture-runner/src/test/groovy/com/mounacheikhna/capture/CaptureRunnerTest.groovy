@@ -36,12 +36,13 @@ class CaptureRunnerTest {
   public void runsWhenAllInputProvided() {
     Task captureTask = project.tasks.create("captureTask", CaptureRunnerTask.class)
     captureTask.taskPrefix("test")
-    captureTask.appApkPath("build/outputs/apk/dummy.apk")
-    captureTask.testApkPath("build/outputs/apk/dummy-androidTest.apk")
+    captureTask.appApkPath("${project.getRootDir()}/build/outputs/apk/dummy.apk")
+    captureTask.testApkPath("${project.getRootDir()}/build/outputs/apk/dummy-androidTest.apk")
     captureTask.appPackageName("com.mounacheikhna.capture")
     captureTask.testPackageName("com.mounacheikhna.capture.test")
-    captureTask.serialNumber("192.168.56.101:5555")
+    captureTask.serialNumber("01049732e46b1389")
     captureTask.testClassName("com.mounacheikhna.capture.TestClass")
+    captureTask.outputPath("${project.getRootDir()}/results")
     captureTask.execute()
   }
 
