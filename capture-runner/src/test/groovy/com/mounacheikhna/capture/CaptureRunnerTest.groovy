@@ -5,6 +5,7 @@ import org.gradle.api.Task
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Before
 import org.junit.Test
+
 /**
  * Created by cheikhnamouna on 2/25/16.
  */
@@ -37,10 +38,10 @@ class CaptureRunnerTest {
     captureTask.taskPrefix("test")
     captureTask.appApkPath("${project.getRootDir()}/build/outputs/apk/dummy.apk")
     captureTask.testApkPath("${project.getRootDir()}/build/outputs/apk/dummy-androidTest.apk")
-    captureTask.appPackageName("com.mounacheikhna.capture")
-    captureTask.testPackageName("com.mounacheikhna.capture.test")
+    captureTask.appPackageName("com.comuto.debug")
+    captureTask.testPackageName("com.comuto.debug.test")
     captureTask.serialNumber("01049732e46b1389")
-    captureTask.testClassName("com.mounacheikhna.capture.TestClass")
+    captureTask.testClassName("com.comuto.v3.TakeScreenshot")
     captureTask.outputPath("${project.getRootDir()}/results")
     captureTask.execute()
   }
